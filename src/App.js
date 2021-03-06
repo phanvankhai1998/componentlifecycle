@@ -4,17 +4,18 @@ import Header from './components/Header'
 import Home from './components/Home'
 
 class App extends React.Component {
-    // constructor(props) {
-    //     super();
-    //     this.state = {
-    //         homeLink: "Home",
-    //         homeMounted: true,
-    //     };
-    // }
+    constructor(props) {
+        super();
+        // this.state = {
+        //     homeLink: "Home",
+        //     homeMounted: true,
+        // };
+        this.onGreet = this.onGreet.bind(this);
+    }
 
-    // onGreet() {
-    //     alert("Hello!");
-    // }
+    onGreet() {
+        alert("Hello!");
+    }
 
     // onChangeName(newName) {
     //     this.setState({
@@ -47,11 +48,10 @@ class App extends React.Component {
 
         return (
             <div className="container">
-
                 <div className="row">
                     <div className="col-xs-10 col-xs-offset-1">
                         Hello!
-                        <Header />
+                        <Header homeLink="Home" />
                         {/* <Header homeLink={this.state.homeLink} /> */}
                     </div>
                 </div>
@@ -64,11 +64,12 @@ class App extends React.Component {
 
                 <div className="row">
                     <div className="col-xs-10 col-xs-offset-1">
-                        {/* <Home name={"Max"} age={27} user={user} > */}
-                        <Home name={"Max"} age={27} />
+                        <Home
+                            name={"Max"}
+                            initalAge={27}
+                            greet={this.onGreet}
+                        />
                         {/* <p>This is a paragraph!</p>
-                        </Home> */}
-
                         {/* <button
                             className="btn btn-primary"
                             onClick={this.onChangeHomeMounted.bind(this)}
