@@ -6,9 +6,10 @@ class Home extends React.Component {
         super();
         this.state = {
             age: props.initalAge,
-            status: 0
+            status: 0,
+            homeLink: "Changed Link"
         };
-        //this.onMakeOlder = this.onMakeOlder.bind(this);
+        this.onChangeLink = this.onChangeLink.bind(this);
         setTimeout(() => {
             this.setState({
                 status: 1
@@ -23,6 +24,10 @@ class Home extends React.Component {
         console.log(this.age);
     }
 
+    onChangeLink() {
+        this.props.changeLink(this.state.homeLink);
+    }
+
     render() {
         console.log('Props is:', this.props);
         console.log('state is:', this.state);
@@ -34,8 +39,7 @@ class Home extends React.Component {
                 <button
                     className="btn btn-primary"
                     // onClick={this.onMakeOlder}
-                    //ES6: Arrow Func
-                    onClick={() => this.onMakeOlder()}
+                    onClick={() => this.onMakeOlder()}//ES6: Arrow Func
                 >
                     Make me older!
                 </button>
@@ -45,6 +49,14 @@ class Home extends React.Component {
                     onClick={this.props.greet}
                 >Greet
                 </button>
+                <hr />
+                <button
+                    className="btn btn-primary"
+                    onClick={this.onChangeLink}
+                >
+                    Change Header Link
+                </button>
+
             </div>
         )
     }
