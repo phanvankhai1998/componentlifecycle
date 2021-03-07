@@ -7,8 +7,11 @@ const Header = (props) => {
                 <div className="navbar-header">
                     <ul className="nav navbar-nav"> {/* ul.nav.navbar-nav */}
                         <li>
-                            <a href="#">
-                                {props.homeLink}
+                            <a href="">
+                                Home
+                            </a>
+                            <a href="">
+                                User
                             </a>
                         </li>
                     </ul>

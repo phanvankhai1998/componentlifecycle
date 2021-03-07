@@ -2,6 +2,11 @@ import './App.css';
 import React from 'react';
 import Header from './components/Header'
 import Home from './components/Home'
+import User from './components/User'
+import Root from './components/Root'
+import { browserHistory } from "react-router";
+import { createBrowserHistory } from 'history'
+import { Router, Route, IndexRoute } from "react-router";
 
 class App extends React.Component {
     constructor() {
@@ -32,6 +37,16 @@ class App extends React.Component {
     }
 
     render() {
+        browserHistory.listen(location => {
+            browserHistory.push('/super/url');
+        });
+        const router = (
+            <Router history={browserHistory}>
+                <Route path="/" component={App}>
+                    …
+              </Route>
+            </Router>
+        );
         let homeCmp = "";
         if (this.state.homeMounted) {
             homeCmp = (
@@ -46,8 +61,7 @@ class App extends React.Component {
         }
         return (
             <div className="container">
-
-                <div className="row">
+                {/* <div className="row">
                     <div className="col-xs-10 col-xs-offset-1">
                         Hello!
                         <Header homeLink={this.state.homeLink} />
@@ -68,8 +82,20 @@ class App extends React.Component {
                             (Un Mount Home Component)
                             </button>
                     </div>
-                </div>
+                </div> */}
+
+                <hr />
+                <Router history={browserHistory}>
+                    <Route path={"/root"} component={Root}>
+                        <IndexRoute component={Home} />
+                        <Route path={"User"} component={User} />
+                        <Route path={"Home"} component={Home} />
+                    </Route>
+                    <Route path={"home"} component={Home} />
+                </Router>
+
             </div>
+
         );
     }
 }
