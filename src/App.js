@@ -12,6 +12,7 @@ class App extends React.Component {
         };
         this.onGreet = this.onGreet.bind(this);
         this.onChangeLinkName = this.onChangeLinkName.bind(this);
+        this.onChangeHomeMounted = this.onChangeHomeMounted.bind(this);
     }
 
     onGreet() {
@@ -24,73 +25,52 @@ class App extends React.Component {
         });
     }
 
-    // onChangeHomeMounted() {
-    //     this.setState({
-    //         homeMounted: !this.state.homeMounted
-    //     });
-    // }
+    onChangeHomeMounted() {
+        this.setState({
+            homeMounted: !this.state.homeMounted
+        });
+    }
 
     render() {
-        //let homeCmp = "";
-        // if (this.state.homeMounted) {
-        //     homeCmp = <Home
-        //         name={"Max"}
-        //         initialAge={27}
-        //         greet={this.onGreet}
-        //         changeLink={this.onChangeLinkName.bind(this)}
-        //         initialLinkName={this.state.homeLink}
-        //     />
-        // }
+        let homeCmp = "";
+        if (this.state.homeMounted) {
+            homeCmp = (
+                <Home
+                    name={"Max"}
+                    initialAge={27}
+                    greet={this.onGreet}
+                    changeLink={this.onChangeLinkName}
+                    initialLinkName={this.state.homeLink}
+                />
+            );
+        }
         return (
             <div className="container">
+
                 <div className="row">
                     <div className="col-xs-10 col-xs-offset-1">
                         Hello!
-                        {/* <Header homeLink="Home" /> */}
                         <Header homeLink={this.state.homeLink} />
                     </div>
                 </div>
-                {/* <div className="row">
+
+                <div className="row">
                     <div className="col-xs-18 col-xs-offset-1">
                         {homeCmp}
                     </div>
-                </div> */}
+                </div>
                 <div className="row">
                     <div className="col-xs-10 col-xs-offset-1">
-                        <Home
-                            name={"Max"}
-                            initalAge={27}
-                            greet={this.onGreet}
-                            changeLink={this.onChangeLinkName}
-                            initalLinkName={this.state.homeLink}
-                        />
+                        <button
+                            className="btn btn-primary"
+                            onClick={this.onChangeHomeMounted}
+                        >
+                            (Un Mount Home Component)
+                            </button>
                     </div>
                 </div>
             </div>
         );
     }
 }
-
-
-// function App() {
-//     return (
-//         <div className="App">
-//             <header className="App-header">
-//                 <img src={logo} className="App-logo" alt="logo" />
-//                 <p>
-//                     Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//                 <a
-//                     className="App-link"
-//                     href="https://reactjs.org"
-//                     target="_blank"
-//                     rel="noopener noreferrer"
-//                 >
-//                     Learn React
-//         </a>
-//             </header>
-//         </div>
-//     );
-// }
-
 export default App;
